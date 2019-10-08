@@ -49,6 +49,7 @@ import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settingslib.search.Indexable;
 import com.android.settingslib.search.SearchIndexable;
 
+import com.everest.fragments.quicksettings.QsHeaderImageSettings;
 import com.everest.support.preferences.SystemSettingListPreference;
 
 import java.util.ArrayList;
@@ -139,6 +140,7 @@ public class QuickSettings extends SettingsPreferenceFragment
         ContentResolver resolver = mContext.getContentResolver();
         Settings.System.putIntForUser(resolver,
                 Settings.System.QS_PANEL_STYLE, 0, UserHandle.USER_CURRENT);
+        QsHeaderImageSettings.reset(mContext);
     }
 
     private void updateQsStyle() {

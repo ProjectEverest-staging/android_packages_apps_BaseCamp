@@ -60,6 +60,14 @@
          android:summary="@string/qs_tile_layout_summary"
          android:fragment="com.everest.fragments.QsTileLayoutSettings" />
 
+        <!-- QS Header -->
+        <Preference
+            android:key="qs_header_image"
+            android:icon="@drawable/ic_header"
+            android:title="@string/qs_header_image_title"
+            android:summary="@string/qs_header_image_summary"
+            android:fragment="com.everest.fragments.quicksettings.QsHeaderImageSettings" />
+
      </PreferenceCategory>
 
      <PreferenceCategory
