@@ -54,6 +54,14 @@
             android:title="@string/wifi_standard_icon_title"
             android:summary="@string/wifi_standard_icon_summary"
             android:defaultValue="false"/>
+
+        <!-- Network Traffic -->
+        <com.everest.support.preferences.SystemSettingMasterSwitchPreference
+            android:key="network_traffic_state"
+            android:title="@string/network_traffic_state_title"
+            android:summary="@string/network_traffic_state_summary"
+            android:fragment="com.everest.fragments.NetworkTraffic"
+            android:defaultValue="false" />
             
         <com.everest.support.preferences.SystemSettingSwitchPreference
             android:key="statusbar_colored_icons"
