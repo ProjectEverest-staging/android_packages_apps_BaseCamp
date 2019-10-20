@@ -28,6 +28,7 @@ import android.provider.Settings;
 
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
+import androidx.preference.PreferenceCategory;
 import androidx.preference.Preference.OnPreferenceChangeListener;
 import androidx.preference.PreferenceScreen;
 import androidx.preference.SwitchPreferenceCompat;
@@ -44,9 +45,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.everest.support.preferences.SystemSettingMasterSwitchPreference;
+
 @SearchIndexable
 public class StatusBarSettings extends SettingsPreferenceFragment 
             implements Preference.OnPreferenceChangeListener {
+
+    private static final String KEY_NETWORK_TRAFFIC = "network_traffic_state";
+
+    private boolean enabled;
+    private SystemSettingMasterSwitchPreference mNetworkTraffic;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -55,12 +63,27 @@ public class StatusBarSettings extends SettingsPreferenceFragment
         PreferenceScreen prefSet = getPreferenceScreen();
         final Resources res = getResources();
         final PreferenceScreen prefScreen = getPreferenceScreen();
+        final ContentResolver resolver = getActivity().getContentResolver();
+
+        mNetworkTraffic = (SystemSettingMasterSwitchPreference)
+                findPreference(KEY_NETWORK_TRAFFIC);
+        enabled = Settings.System.getIntForUser(resolver,
+                KEY_NETWORK_TRAFFIC, 0, UserHandle.USER_CURRENT) == 1;
+        mNetworkTraffic.setChecked(enabled);
+        mNetworkTraffic.setOnPreferenceChangeListener(this);
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
+        ContentResolver resolver = getActivity().getContentResolver();
+        if (preference == mNetworkTraffic) {
+            boolean value = (Boolean) newValue;
+            Settings.System.putIntForUser(resolver, KEY_NETWORK_TRAFFIC,
+                    value ? 1 : 0, UserHandle.USER_CURRENT);
+            return true;
+        }
         return false;
-    }  
+    }
 
     @Override
     public int getMetricsCategory() {
