@@ -27,6 +27,7 @@
                android:title="@string/ambient_wake_gestures_title"
                android:summary="@string/ambient_wake_gestures_summary"
                android:defaultValue="false" />
+
      </PreferenceCategory>
 
     <PreferenceCategory
@@ -60,6 +61,13 @@
                android:defaultValue="false"
                android:title="@string/doze_on_charge_title"
                android:summary="@string/doze_on_charge_summary" />
+
+        <!-- Horizon Light Settings -->
+        <Preference
+            android:key="pulse_ambient_light_settings"
+            android:title="@string/pulse_ambient_light_title"
+            android:summary="@string/pulse_ambient_light_summary"
+            android:fragment="com.everest.basecamp.fragments.PulseAmbientLightSettings" />
 
      </PreferenceCategory>
 
