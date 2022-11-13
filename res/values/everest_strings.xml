@@ -540,4 +540,7 @@
     <string name="brightness_slider_style_line">Thin Outline</string>
     <string name="brightness_slider_style_lighty">Lighty</string>
     
+    <!-- Charging animation -->
+    <string name="charging_animation_title">Charging animation</string>
+    <string name="charging_animation_summary">Display an animation when the device is plugged in</string>
 </resources>
