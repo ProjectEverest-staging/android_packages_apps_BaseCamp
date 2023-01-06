@@ -956,4 +956,14 @@
     <string name="settings_header_image_title">Settings header image</string>
     <string name="settings_header_image_random_title">Random Settings header image</string>
     <string name="settings_header_image_random_summary">Enable random aesthetic settings dashboard banner/header images</string>
+     
+    <!-- Header styles -->
+    <string name="about_header_title">Header style</string>
+    <string name="about_header_blur">BlurView</string>
+    <string name="about_header_scrim">AccentScrim</string>
+    <string name="about_header_accent">Accent</string>
+    <string name="about_header_random">Slim Random</string>
+    <string name="about_header_lottie1">Lottie1</string>
+    <string name="about_header_lottie2">Lottie2</string>
+    <string name="about_header_lottie3">Lottie3</string>
 </resources>

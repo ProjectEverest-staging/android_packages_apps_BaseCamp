@@ -34,6 +34,7 @@ import androidx.preference.SwitchPreferenceCompat;
 
 import com.android.internal.logging.nano.MetricsProto;
 import com.android.internal.util.everest.systemUtils;
+import com.everest.support.preferences.SystemSettingListPreference;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
@@ -50,8 +51,10 @@ public class MiscSettings extends SettingsPreferenceFragment
             implements Preference.OnPreferenceChangeListener {
 
     private static final String SETTINGS_HEADER_IMAGE_RANDOM = "settings_header_image_random";
+    private static final String ABOUT_PHONE_STYLE = "header_style";
 
     private Preference mSettingsHeaderImageRandom;
+    private SystemSettingListPreference mAboutPhoneStyle;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -63,6 +66,8 @@ public class MiscSettings extends SettingsPreferenceFragment
 
         mSettingsHeaderImageRandom = findPreference(SETTINGS_HEADER_IMAGE_RANDOM);
         mSettingsHeaderImageRandom.setOnPreferenceChangeListener(this);
+        mAboutPhoneStyle = (SystemSettingListPreference) findPreference(ABOUT_PHONE_STYLE);
+        mAboutPhoneStyle.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -72,7 +77,10 @@ public class MiscSettings extends SettingsPreferenceFragment
 	if (preference == mSettingsHeaderImageRandom) {
             systemUtils.showSettingsRestartDialog(getContext());
             return true;
-          }
+        } else if (preference == mAboutPhoneStyle) {
+            systemUtils.showSettingsRestartDialog(getContext());
+            return true;
+        }
         return false;
     }  
 
