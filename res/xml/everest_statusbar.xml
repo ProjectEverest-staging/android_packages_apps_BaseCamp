@@ -49,6 +49,12 @@
             android:title="@string/status_bar_clock_title"
             android:summary="@string/status_bar_clock_summary"
             android:fragment="com.everest.basecamp.fragments.Clock" />
+            
+        <com.everest.support.preferences.SystemSettingSwitchPreference
+            android:key="statusbar_clock_chip"
+            android:title="@string/statusbar_clock_chip_title"
+            android:summary="@string/statusbar_clock_chip_summary"
+            android:defaultValue="true" />
 
     </PreferenceCategory>
 </PreferenceScreen>
