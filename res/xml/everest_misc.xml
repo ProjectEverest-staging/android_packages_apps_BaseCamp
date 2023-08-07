@@ -44,6 +44,17 @@
     </PreferenceCategory>
 
     <PreferenceCategory
+    android:title="@string/setstyles_category">
+
+    <com.everest.support.preferences.SystemSettingSwitchPreference
+        android:key="settings_header_image_random"
+        android:title="@string/settings_header_image_random_title"
+        android:summary="@string/settings_header_image_random_summary"
+        android:defaultValue="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
     android:title="@string/spoofing_category">
 
         <!-- Component spoofing -->
