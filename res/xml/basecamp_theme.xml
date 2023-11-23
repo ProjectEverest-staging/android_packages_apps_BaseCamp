@@ -14,11 +14,11 @@
     
     <!-- Font style -->
     <Preference
-        android:key="android.theme.customization.fonts"
-        android:title="@string/theme_customization_font_title"
-        android:summary="@string/theme_customization_font_summary"
-        android:fragment="com.everest.fragments.FontsPicker"/>
-
+        android:key="font_styles"
+        android:title="@string/font_styles_title"
+        android:summary="@string/font_styles_summary"
+        android:fragment="com.everest.fragments.themes.fonts.FontPickerPreview"/>
+        
     <!-- Icon pack -->
     <Preference
         android:key="android.theme.customization.icon_pack"
