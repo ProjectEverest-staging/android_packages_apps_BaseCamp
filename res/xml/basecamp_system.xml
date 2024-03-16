@@ -22,6 +22,14 @@
             android:title="@string/app_downgrade_title"
             android:summary="@string/app_downgrade_summary"
             android:defaultValue="false"/>
+
+
+   <!-- QuickSwitch -->
+    <Preference
+        android:key="quickswitch"
+        android:title="@string/quickswitch_launcher_title" 
+        android:summary="@string/quickswitch_launcher_summary" 
+        android:fragment="com.everest.fragments.QuickSwitch" /> 
     
     </PreferenceCategory>
 
