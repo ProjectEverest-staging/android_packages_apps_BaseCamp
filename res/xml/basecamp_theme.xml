@@ -47,12 +47,6 @@
         android:summary="@string/theme_customization_wifi_icon_summary"
         android:fragment="com.everest.fragments.WifiIcons"/>
 
-    <Preference
-        android:key="udfps_settings"
-        android:title="@string/udfps_settings_title"
-        android:summary="@string/udfps_settings_summary"
-        android:fragment="com.everest.fragments.lockscreen.UdfpsSettings" />
-        
     <!-- Volume Styles -->      
     <com.everest.support.preferences.SystemSettingListPreference
         android:key="custom_volume_styles"
@@ -83,6 +77,19 @@
         android:title="@string/theme_customization_navbar_title"
         android:summary="@string/theme_customization_navbar_summary"
         android:fragment="com.everest.fragments.NavbarStyles"/>
+
+    </PreferenceCategory>
+
+	<!-- Udfps options -->
+    <PreferenceCategory
+        android:key="udfps_category"
+        android:title="@string/udfps_category">
+
+    <Preference
+        android:key="udfps_settings"
+        android:title="@string/udfps_settings_title"
+        android:summary="@string/udfps_settings_summary"
+        android:fragment="com.everest.fragments.lockscreen.UdfpsSettings" />
 
     </PreferenceCategory>
 
