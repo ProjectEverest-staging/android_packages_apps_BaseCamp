@@ -801,9 +801,5 @@
     <string name="data">Data</string>
     <string name="ringer">Ringer</string>
     <string name="bt">Bluetooth</string>
-
-    <!-- QuickSwitch -->
-    <string name="quickswitch_launcher_title">QuickSwitch</string>
-    <string name="quickswitch_launcher_summary">Customize default homescreen app</string>
 </resources>
 
