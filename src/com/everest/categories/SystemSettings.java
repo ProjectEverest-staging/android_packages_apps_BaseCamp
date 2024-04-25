@@ -22,7 +22,6 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.SystemProperties;
 import android.os.UserHandle;
 import android.provider.SearchIndexableResource;
 import android.provider.Settings;
@@ -49,8 +48,6 @@ import java.util.List;
 public class SystemSettings extends SettingsPreferenceFragment 
             implements Preference.OnPreferenceChangeListener {
 
-    private static final String KEY_QUICKSWITCH_PREFERENCE = "quickswitch";
-
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -58,15 +55,6 @@ public class SystemSettings extends SettingsPreferenceFragment
         PreferenceScreen prefSet = getPreferenceScreen();
         final Resources res = getResources();
         final PreferenceScreen prefScreen = getPreferenceScreen();
-
-        final boolean targetHasSingleLauncher = SystemProperties.getInt("persist.sys.target_has_single_launcher", 0) != 0;
-        PreferenceScreen preferenceScreen = getPreferenceScreen();
-        if (targetHasSingleLauncher) {
-            Preference quickSwitchPreference = findPreference(KEY_QUICKSWITCH_PREFERENCE);
-            if (quickSwitchPreference != null) {
-                preferenceScreen.removePreference(quickSwitchPreference);
-            }
-        }
     }
 
     @Override
