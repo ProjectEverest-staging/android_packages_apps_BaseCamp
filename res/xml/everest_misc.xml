@@ -29,12 +29,6 @@
         android:summary="@string/show_clipboard_overlay_summary"
         android:defaultValue="true"/>
 
-     <com.everest.support.preferences.SecureSettingSwitchPreference
-            android:key="spoof_storage_encryption_status"
-            android:title="@string/spoof_storage_encryption_status_title"
-            android:summary="@string/spoof_storage_encryption_status_summary"
-            android:defaultValue="false"/>
-
         <com.everest.support.preferences.GlobalSettingSwitchPreference
             android:key="hide_screen_capture_status"
             android:title="@string/hide_screen_capture_status_title"
