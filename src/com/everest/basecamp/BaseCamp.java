@@ -30,6 +30,7 @@ import android.widget.ImageView;
 import com.android.internal.logging.nano.MetricsProto;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -38,24 +39,21 @@ import com.android.settings.SettingsPreferenceFragment;
 
 import com.everest.basecamp.fragments.*;
 
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.fragment.app.FragmentManager;
-
-import android.content.Context;
 import android.content.Intent;
-import android.widget.ImageView;
+import android.widget.RelativeLayout;
+
 import com.google.android.material.card.MaterialCardView;
 
 public class BaseCamp extends SettingsPreferenceFragment implements View.OnClickListener {
 
     private LinearLayout[] settingCards;
     private MaterialCardView mLockScreenSettingsCard, wallpapercard;
+    private RelativeLayout abouteverest;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.basecamp, container, false);
-        settingCards = new LinearLayout[] {
+        settingCards = new LinearLayout[]{
                 view.findViewById(R.id.qscard),
                 view.findViewById(R.id.statusbarcard),
                 view.findViewById(R.id.themecard),
@@ -64,8 +62,7 @@ public class BaseCamp extends SettingsPreferenceFragment implements View.OnClick
                 view.findViewById(R.id.notificationcard),
                 view.findViewById(R.id.systemcard),
                 view.findViewById(R.id.miscscard),
-                view.findViewById(R.id.buttonscard),
-                view.findViewById(R.id.abouteverest)
+                view.findViewById(R.id.buttonscard)
         };
         for (LinearLayout card : settingCards) {
             card.setOnClickListener(this);
@@ -75,6 +72,9 @@ public class BaseCamp extends SettingsPreferenceFragment implements View.OnClick
 
         wallpapercard = view.findViewById(R.id.wallpapercard);
         wallpapercard.setOnClickListener(this);
+
+        abouteverest = view.findViewById(R.id.abouteverest);
+        abouteverest.setOnClickListener(this);
 
         return view;
     }
@@ -87,9 +87,6 @@ public class BaseCamp extends SettingsPreferenceFragment implements View.OnClick
         if (id == R.id.qscard) {
             fragment = new QuickSettings();
             title = getString(R.string.quicksettings_title);
-        } else if (id == R.id.statusbarcard) {
-            fragment = new StatusBarSettings();
-            title = getString(R.string.statusbar_title);
         } else if (id == R.id.statusbarcard) {
             fragment = new StatusBarSettings();
             title = getString(R.string.statusbar_title);
@@ -115,10 +112,11 @@ public class BaseCamp extends SettingsPreferenceFragment implements View.OnClick
             fragment = new MiscSettings();
             title = getString(R.string.misc_title);
         } else if (id == R.id.abouteverest) {
-            fragment = new ButtonSettings();
-            title = getString(R.string.button_title);
+            fragment = new AboutSettings();
+            title = getString(R.string.about_title);
         } else if (id == R.id.wallpapercard) {
-            WallpaperPickerActivity();
+            launchWallpaperPickerActivity();
+            return;
         }
 
         if (fragment != null && title != null) {
@@ -146,10 +144,10 @@ public class BaseCamp extends SettingsPreferenceFragment implements View.OnClick
     @Override
     public void onResume() {
         super.onResume();
-        getActivity().setTitle("Everest_Basecamp");
+        getActivity().setTitle("Everest Basecamp");
     }
 
-    public void WallpaperPickerActivity() {
+    private void launchWallpaperPickerActivity() {
         Intent intent = new Intent();
         intent.setClassName("com.google.android.apps.wallpaper", "com.google.android.apps.wallpaper.picker.CategoryPickerActivity");
         startActivity(intent);

@@ -18,6 +18,7 @@
     <string name="system_title">System</string>
     <string name="theme_title">Theme Room</string>
     <string name="notifications_title">Notifications</string>
+    <string name="about_title">About Everest"</string>
     
     <!--Categories Summary-->
     <string name="button_summary">Customize your buttons</string>
