@@ -23,6 +23,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+import android.view.MotionEvent; 
 
 import androidx.preference.Preference;
 import androidx.preference.PreferenceScreen;
@@ -50,6 +51,17 @@ public class BaseCamp extends SettingsPreferenceFragment implements View.OnClick
         lsclock = mPreference.findViewById(R.id.wallpaper);
         themes = mPreference.findViewById(R.id.theme);
         fonts = mPreference.findViewById(R.id.fonts);
+
+    // Set touch listener to prevent the entire header from being clickable
+    View headerView = mPreference.findViewById(R.id.header_root);
+    if (headerView != null) {
+        headerView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return true; // Intercept touch events
+            }
+        });
+    }
 
         lsclock.setOnClickListener(this);
         lsclock.setOnLongClickListener(this);
