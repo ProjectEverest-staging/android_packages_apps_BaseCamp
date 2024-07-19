@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 The EverestOS Project
+ * Copyright (C) 2024 ProjectEverest
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,30 +16,143 @@
 
 package com.everest.basecamp;
 
-import com.android.internal.logging.nano.MetricsProto;
-
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.Surface;
-import android.preference.Preference;
-import com.android.settings.R;
+import android.widget.LinearLayout;
+import android.widget.ImageView;
 
+import com.android.internal.logging.nano.MetricsProto;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 
-public class BaseCamp extends SettingsPreferenceFragment {
+import com.everest.basecamp.fragments.*;
+
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.fragment.app.FragmentManager;
+
+import android.content.Context;
+import android.content.Intent;
+import android.widget.ImageView;
+import com.google.android.material.card.MaterialCardView;
+
+public class BaseCamp extends SettingsPreferenceFragment implements View.OnClickListener {
+
+    private LinearLayout[] settingCards;
+    private MaterialCardView mLockScreenSettingsCard, wallpapercard;
 
     @Override
-    public void onCreate(Bundle icicle) {
-        super.onCreate(icicle);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.basecamp, container, false);
+        settingCards = new LinearLayout[] {
+                view.findViewById(R.id.qscard),
+                view.findViewById(R.id.statusbarcard),
+                view.findViewById(R.id.themecard),
+                view.findViewById(R.id.lscard),
+                view.findViewById(R.id.gesturecard),
+                view.findViewById(R.id.notificationcard),
+                view.findViewById(R.id.systemcard),
+                view.findViewById(R.id.miscscard),
+                view.findViewById(R.id.buttonscard),
+                view.findViewById(R.id.abouteverest)
+        };
+        for (LinearLayout card : settingCards) {
+            card.setOnClickListener(this);
+        }
+        mLockScreenSettingsCard = view.findViewById(R.id.lscard);
+        mLockScreenSettingsCard.setOnClickListener(this);
 
-        addPreferencesFromResource(R.xml.basecamp);
+        wallpapercard = view.findViewById(R.id.wallpapercard);
+        wallpapercard.setOnClickListener(this);
+
+        return view;
+    }
+
+    @Override
+    public void onClick(View view) {
+        int id = view.getId();
+        Fragment fragment = null;
+        String title = null;
+        if (id == R.id.qscard) {
+            fragment = new QuickSettings();
+            title = getString(R.string.quicksettings_title);
+        } else if (id == R.id.statusbarcard) {
+            fragment = new StatusBarSettings();
+            title = getString(R.string.statusbar_title);
+        } else if (id == R.id.statusbarcard) {
+            fragment = new StatusBarSettings();
+            title = getString(R.string.statusbar_title);
+        } else if (id == R.id.lscard) {
+            fragment = new LockScreenSettings();
+            title = getString(R.string.lockscreen_title);
+        } else if (id == R.id.buttonscard) {
+            fragment = new ButtonSettings();
+            title = getString(R.string.button_title);
+        } else if (id == R.id.gesturecard) {
+            fragment = new GestureSettings();
+            title = getString(R.string.gestures_title);
+        } else if (id == R.id.notificationcard) {
+            fragment = new NotificationSettings();
+            title = getString(R.string.notifications_title);
+        } else if (id == R.id.themecard) {
+            fragment = new ThemeSettings();
+            title = getString(R.string.theme_title);
+        } else if (id == R.id.systemcard) {
+            fragment = new SystemSettings();
+            title = getString(R.string.system_title);
+        } else if (id == R.id.miscscard) {
+            fragment = new MiscSettings();
+            title = getString(R.string.misc_title);
+        } else if (id == R.id.abouteverest) {
+            fragment = new ButtonSettings();
+            title = getString(R.string.button_title);
+        } else if (id == R.id.wallpapercard) {
+            WallpaperPickerActivity();
+        }
+
+        if (fragment != null && title != null) {
+            replaceFragment(fragment, title);
+        }
+    }
+
+    private void replaceFragment(Fragment fragment, String title) {
+        FragmentManager fragmentManager = getFragmentManager();
+        if (fragmentManager != null) {
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.setCustomAnimations(R.anim.fragment_slide_in, R.anim.fragment_slide_out);
+            transaction.replace(this.getId(), fragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+            getActivity().setTitle(title != null ? title : "Everest Basecamp");
+        }
     }
 
     @Override
     public int getMetricsCategory() {
         return MetricsProto.MetricsEvent.EVEREST;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getActivity().setTitle("Everest_Basecamp");
+    }
+
+    public void WallpaperPickerActivity() {
+        Intent intent = new Intent();
+        intent.setClassName("com.google.android.apps.wallpaper", "com.google.android.apps.wallpaper.picker.CategoryPickerActivity");
+        startActivity(intent);
     }
 
     public static void lockCurrentOrientation(Activity activity) {
