@@ -48,7 +48,6 @@ public class BaseCamp extends SettingsPreferenceFragment implements View.OnClick
 
     private LinearLayout[] settingCards;
     private MaterialCardView mLockScreenSettingsCard, wallpapercard;
-    private RelativeLayout abouteverest;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -57,12 +56,12 @@ public class BaseCamp extends SettingsPreferenceFragment implements View.OnClick
                 view.findViewById(R.id.qscard),
                 view.findViewById(R.id.statusbarcard),
                 view.findViewById(R.id.themecard),
-                view.findViewById(R.id.lscard),
                 view.findViewById(R.id.gesturecard),
                 view.findViewById(R.id.notificationcard),
                 view.findViewById(R.id.systemcard),
                 view.findViewById(R.id.miscscard),
-                view.findViewById(R.id.buttonscard)
+                view.findViewById(R.id.buttonscard),
+                view.findViewById(R.id.abouteverest)
         };
         for (LinearLayout card : settingCards) {
             card.setOnClickListener(this);
@@ -72,9 +71,6 @@ public class BaseCamp extends SettingsPreferenceFragment implements View.OnClick
 
         wallpapercard = view.findViewById(R.id.wallpapercard);
         wallpapercard.setOnClickListener(this);
-
-        abouteverest = view.findViewById(R.id.abouteverest);
-        abouteverest.setOnClickListener(this);
 
         return view;
     }

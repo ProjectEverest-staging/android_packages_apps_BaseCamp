@@ -21,6 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:baselineAligned="false"
+            android:background="@drawable/everest_preference_background_single"
             android:orientation="horizontal">
 
             <com.google.android.material.card.MaterialCardView
@@ -44,9 +45,9 @@
 
             </com.google.android.material.card.MaterialCardView>
 
-            <RelativeLayout
+            <LinearLayout
                 android:id="@+id/abouteverest"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
@@ -75,7 +76,7 @@
                     android:paddingVertical="2dp"
                     android:singleLine="true"
                     android:textColor="#000000" />
-            </RelativeLayout>
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -119,11 +120,12 @@
             android:baselineAligned="false"
             android:orientation="horizontal">
 
-            <com.google.android.material.card.MaterialCardView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:layout_marginEnd="4dp"
                 android:layout_weight="1"
+                android:background="@drawable/everest_preference_background_single"
                 app:cardElevation="0dp">
 
                 <LinearLayout
@@ -137,8 +139,11 @@
                         android:id="@+id/qscard"
                         android:layout_width="match_parent"
                         android:layout_height="105dp"
-                        android:layout_margin="10dp"
-                        android:background="@drawable/everest_adaptive_shape"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/ev_card"
                         android:orientation="vertical">
 
                         <ImageView
@@ -169,7 +174,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginEnd="10dp"
-                        android:background="@drawable/everest_adaptive_shape"
+                        android:background="@drawable/ev_card"
                         android:orientation="vertical">
 
                         <ImageView
@@ -193,7 +198,7 @@
 
                     </LinearLayout>
                 </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
@@ -204,14 +209,13 @@
                 app:cardElevation="0dp">
 
                 <LinearLayout
-                    android:id="@+id/lscard"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="end|center_vertical|center_horizontal|center"
                     android:orientation="vertical">
 
                     <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/phone_image"
+                        android:id="@+id/lscard"
                         android:layout_width="match_parent"
                         android:layout_height="250dp"
                         android:layout_centerVertical="true"
@@ -281,7 +285,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="1"
-                android:background="@drawable/everest_adaptive_shape"
+                android:background="@drawable/ev_card"
                 android:orientation="vertical">
 
                 <ImageView
@@ -312,7 +316,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="1"
-                android:background="@drawable/everest_adaptive_shape"
+                android:background="@drawable/ev_card"
                 android:orientation="vertical">
 
                 <ImageView
@@ -343,7 +347,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="16dp"
                 android:layout_weight="1"
-                android:background="@drawable/everest_adaptive_shape"
+                android:background="@drawable/ev_card"
                 android:orientation="vertical">
 
                 <ImageView
@@ -384,7 +388,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="1"
-                android:background="@drawable/everest_adaptive_shape"
+                android:background="@drawable/ev_card"
                 android:orientation="vertical">
 
                 <ImageView
@@ -415,7 +419,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="16dp"
                 android:layout_weight="1"
-                android:background="@drawable/everest_adaptive_shape"
+                android:background="@drawable/ev_card"
                 android:orientation="vertical">
 
                 <ImageView
