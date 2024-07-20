@@ -33,6 +33,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.core.widget.NestedScrollView;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
@@ -48,10 +49,13 @@ public class BaseCamp extends SettingsPreferenceFragment implements View.OnClick
 
     private LinearLayout[] settingCards;
     private MaterialCardView mLockScreenSettingsCard, wallpapercard;
+    private NestedScrollView scrollView;
+    private int scrollY = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.basecamp, container, false);
+        scrollView = view.findViewById(R.id.nested_scroll_view);
         settingCards = new LinearLayout[]{
                 view.findViewById(R.id.qscard),
                 view.findViewById(R.id.statusbarcard),
@@ -73,6 +77,21 @@ public class BaseCamp extends SettingsPreferenceFragment implements View.OnClick
         wallpapercard.setOnClickListener(this);
 
         return view;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("scrollY", scrollView.getScrollY());
+    }
+
+    @Override
+    public void onViewStateRestored(Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        if (savedInstanceState != null) {
+            scrollY = savedInstanceState.getInt("scrollY", 0);
+            scrollView.post(() -> scrollView.scrollTo(0, scrollY));
+        }
     }
 
     @Override
