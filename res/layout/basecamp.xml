@@ -14,98 +14,10 @@
         android:layout_gravity="center_horizontal"
         android:layout_margin="16dp"
         android:orientation="vertical">
-
+        
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/everest_preference_background_single"
-            android:orientation="horizontal"
-            android:padding="16dp">
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/wallpapercard"
-                android:layout_width="80dp"
-                android:layout_height="160dp"
-                android:layout_marginEnd="16dp"
-                app:cardCornerRadius="18dp"
-                app:cardElevation="0dp"
-                app:strokeColor="?android:attr/textColorPrimary"
-                app:strokeWidth="3dp">
-
-                <com.android.utils.aboutWallpaperView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:adjustViewBounds="true"
-                    android:contentDescription="@null" />
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/everest_preference_background_single"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:id="@+id/abouteverest"
-                    android:layout_width="match_parent"
-                    android:layout_height="75dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/ev_card"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/ic_settings_quicksettings"
-                        android:tint="?android:colorPrimary" />
-
-                    <TextView
-                        style="@style/everestTextSecondaryMedium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:scaleType="fitCenter"
-                        android:text="About Everest" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/aboutphone"
-                    android:layout_width="match_parent"
-                    android:layout_height="75dp"
-                    android:background="@drawable/ev_card"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/ic_settings_quicksettings"
-                        android:tint="?android:colorPrimary" />
-
-                    <TextView
-                        style="@style/everestTextSecondaryMedium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:scaleType="fitCenter"
-                        android:text="About Phone" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:background="@drawable/everest_preference_background_single"
             android:orientation="horizontal"
             android:padding="16dp">
