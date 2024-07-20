@@ -15,6 +15,11 @@
         <item name="android:fontFamily">@*android:string/config_headlineFontFamilyMedium</item>
     </style>
 
+    <style name="everestTextSecondaryMedium">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">?android:colorPrimary</item>
+    </style>
+
     <style name="everestTextSecondary">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">?android:attr/textColorSecondary</item>
