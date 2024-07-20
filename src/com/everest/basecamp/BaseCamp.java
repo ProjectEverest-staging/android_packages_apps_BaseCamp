@@ -25,12 +25,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Surface;
 import android.widget.LinearLayout;
-import android.widget.ImageView;
 
 import com.android.internal.logging.nano.MetricsProto;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.core.widget.NestedScrollView;
@@ -41,14 +39,13 @@ import com.android.settings.SettingsPreferenceFragment;
 import com.everest.basecamp.fragments.*;
 
 import android.content.Intent;
-import android.widget.RelativeLayout;
 
 import com.google.android.material.card.MaterialCardView;
 
-public class BaseCamp extends SettingsPreferenceFragment implements View.OnClickListener {
+public class BaseCamp extends SettingsPreferenceFragment implements View.OnClickListener, View.OnLongClickListener {
 
     private LinearLayout[] settingCards;
-    private MaterialCardView mLockScreenSettingsCard, wallpapercard;
+    private MaterialCardView mLockScreenSettingsCard;
     private NestedScrollView scrollView;
     private int scrollY = 0;
 
@@ -64,17 +61,14 @@ public class BaseCamp extends SettingsPreferenceFragment implements View.OnClick
                 view.findViewById(R.id.notificationcard),
                 view.findViewById(R.id.systemcard),
                 view.findViewById(R.id.miscscard),
-                view.findViewById(R.id.buttonscard),
-                view.findViewById(R.id.abouteverest)
+                view.findViewById(R.id.buttonscard)
         };
         for (LinearLayout card : settingCards) {
             card.setOnClickListener(this);
         }
         mLockScreenSettingsCard = view.findViewById(R.id.lscard);
         mLockScreenSettingsCard.setOnClickListener(this);
-
-        wallpapercard = view.findViewById(R.id.wallpapercard);
-        wallpapercard.setOnClickListener(this);
+        mLockScreenSettingsCard.setOnLongClickListener(this);
 
         return view;
     }
@@ -126,12 +120,6 @@ public class BaseCamp extends SettingsPreferenceFragment implements View.OnClick
         } else if (id == R.id.miscscard) {
             fragment = new MiscSettings();
             title = getString(R.string.misc_title);
-        } else if (id == R.id.abouteverest) {
-            fragment = new AboutSettings();
-            title = getString(R.string.about_title);
-        } else if (id == R.id.wallpapercard) {
-            launchWallpaperPickerActivity();
-            return;
         }
 
         if (fragment != null && title != null) {
@@ -139,11 +127,19 @@ public class BaseCamp extends SettingsPreferenceFragment implements View.OnClick
         }
     }
 
+    @Override
+    public boolean onLongClick(View view) {
+        if (view.getId() == R.id.lscard) {
+            launchWallpaperPickerActivity();
+            return true;
+        }
+        return false;
+    }
+
     private void replaceFragment(Fragment fragment, String title) {
         FragmentManager fragmentManager = getFragmentManager();
         if (fragmentManager != null) {
             FragmentTransaction transaction = fragmentManager.beginTransaction();
-            transaction.setCustomAnimations(R.anim.fragment_slide_in, R.anim.fragment_slide_out);
             transaction.replace(this.getId(), fragment);
             transaction.addToBackStack(null);
             transaction.commit();
