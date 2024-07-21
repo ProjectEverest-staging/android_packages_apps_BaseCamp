@@ -117,7 +117,7 @@ public class BaseCamp extends SettingsPreferenceFragment implements View.OnClick
     class SpanSizeLookupG extends GridLayoutManager.SpanSizeLookup {
         @Override
         public int getSpanSize(int position) {
-            if (position == 0 || position == 1) {
+            if (position == 0 || position == 1 || position == 8) {
                 return 2;
             } else {
                 return 1;
