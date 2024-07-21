@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2024 ProjectEverest
+ * Copyright (C) 2024 Project-Pixelstar
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,127 +16,75 @@
 
 package com.everest.basecamp;
 
-import android.app.Activity;
-import android.content.pm.ActivityInfo;
-import android.content.res.Configuration;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Surface;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
-import com.android.internal.logging.nano.MetricsProto;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceScreen;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
-
-import com.everest.basecamp.fragments.*;
-
-import android.content.Intent;
-
+import com.android.settingslib.widget.LayoutPreference;
 import com.google.android.material.card.MaterialCardView;
+import com.android.internal.logging.nano.MetricsProto;
 
 public class BaseCamp extends SettingsPreferenceFragment implements View.OnClickListener, View.OnLongClickListener {
 
-    private LinearLayout[] settingCards;
-    private MaterialCardView mLockScreenSettingsCard;
+    private LayoutPreference mPreference;
+    private MaterialCardView lsclock;
+    private LinearLayout themes, fonts;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.basecamp, container, false);
-        settingCards = new LinearLayout[]{
-                view.findViewById(R.id.qscard),
-                view.findViewById(R.id.statusbarcard),
-                view.findViewById(R.id.themecard),
-                view.findViewById(R.id.gesturecard),
-                view.findViewById(R.id.notificationcard),
-                view.findViewById(R.id.systemcard),
-                view.findViewById(R.id.miscscard),
-                view.findViewById(R.id.buttonscard)
-        };
-        for (LinearLayout card : settingCards) {
-            card.setOnClickListener(this);
-        }
-        mLockScreenSettingsCard = view.findViewById(R.id.lscard);
-        mLockScreenSettingsCard.setOnClickListener(this);
-        mLockScreenSettingsCard.setOnLongClickListener(this);
+    public void onCreate(Bundle icicle) {
+        super.onCreate(icicle);
+        addPreferencesFromResource(R.xml.basecamp);
 
-        return view;
+        mPreference = findPreference("basecamp_header");
+        lsclock = mPreference.findViewById(R.id.wallpaper);
+        themes = mPreference.findViewById(R.id.theme);
+        fonts = mPreference.findViewById(R.id.fonts);
+
+        lsclock.setOnClickListener(this);
+        lsclock.setOnLongClickListener(this);
+        themes.setOnClickListener(this);
+        fonts.setOnClickListener(this);
     }
 
     @Override
-    public void onClick(View view) {
-        int id = view.getId();
-        Fragment fragment = null;
-        String title = null;
-        if (id == R.id.qscard) {
-            fragment = new QuickSettings();
-            title = getString(R.string.quicksettings_title);
-        } else if (id == R.id.statusbarcard) {
-            fragment = new StatusBarSettings();
-            title = getString(R.string.statusbar_title);
-        } else if (id == R.id.lscard) {
-            fragment = new LockScreenSettings();
-            title = getString(R.string.lockscreen_title);
-        } else if (id == R.id.buttonscard) {
-            fragment = new ButtonSettings();
-            title = getString(R.string.button_title);
-        } else if (id == R.id.gesturecard) {
-            fragment = new GestureSettings();
-            title = getString(R.string.gestures_title);
-        } else if (id == R.id.notificationcard) {
-            fragment = new NotificationSettings();
-            title = getString(R.string.notifications_title);
-        } else if (id == R.id.themecard) {
-            fragment = new ThemeSettings();
-            title = getString(R.string.theme_title);
-        } else if (id == R.id.systemcard) {
-            fragment = new SystemSettings();
-            title = getString(R.string.system_title);
-        } else if (id == R.id.miscscard) {
-            fragment = new MiscSettings();
-            title = getString(R.string.misc_title);
-        }
-
-        if (fragment != null && title != null) {
-            replaceFragment(fragment, title);
+    public void onClick(View v) {
+        if (v == lsclock) {
+            startActivity("LockscreenActivity");
+        } else if (v == themes) {
+            startActivity("ThemeActivity");
+        } else if (v == fonts) {
+            startActivity("FontsPickerActivity");
         }
     }
 
-    @Override
+    private void startActivity(String activity) {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.setClassName("com.android.settings", "com.android.settings.Settings$" + activity);
+        getContext().startActivity(intent);
+    }
+
     public boolean onLongClick(View view) {
-        if (view.getId() == R.id.lscard) {
+        if (view.getId() == R.id.wallpaper) {
             launchWallpaperPickerActivity();
             return true;
         }
         return false;
     }
 
-    private void replaceFragment(Fragment fragment, String title) {
-        FragmentManager fragmentManager = getFragmentManager();
-        if (fragmentManager != null) {
-            FragmentTransaction transaction = fragmentManager.beginTransaction();
-            transaction.replace(this.getId(), fragment);
-            transaction.addToBackStack(null);
-            transaction.commit();
-            getActivity().setTitle(title != null ? title : "Everest Basecamp");
-        }
-    }
-
     @Override
     public int getMetricsCategory() {
         return MetricsProto.MetricsEvent.EVEREST;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        getActivity().setTitle("Everest Basecamp");
     }
 
     private void launchWallpaperPickerActivity() {
@@ -145,32 +93,23 @@ public class BaseCamp extends SettingsPreferenceFragment implements View.OnClick
         startActivity(intent);
     }
 
-    public static void lockCurrentOrientation(Activity activity) {
-        int currentRotation = activity.getWindowManager().getDefaultDisplay().getRotation();
-        int orientation = activity.getResources().getConfiguration().orientation;
-        int frozenRotation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED;
-        switch (currentRotation) {
-            case Surface.ROTATION_0:
-                frozenRotation = orientation == Configuration.ORIENTATION_LANDSCAPE
-                        ? ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
-                        : ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
-                break;
-            case Surface.ROTATION_90:
-                frozenRotation = orientation == Configuration.ORIENTATION_PORTRAIT
-                        ? ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT
-                        : ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
-                break;
-            case Surface.ROTATION_180:
-                frozenRotation = orientation == Configuration.ORIENTATION_LANDSCAPE
-                        ? ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE
-                        : ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT;
-                break;
-            case Surface.ROTATION_270:
-                frozenRotation = orientation == Configuration.ORIENTATION_PORTRAIT
-                        ? ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-                        : ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE;
-                break;
+    @Override
+    public RecyclerView onCreateRecyclerView(LayoutInflater inflater, ViewGroup container, Bundle icicle) {
+        RecyclerView rcv = super.onCreateRecyclerView(inflater, container, icicle);
+        GridLayoutManager layoutG = new GridLayoutManager(getActivity(), 2);
+        layoutG.setSpanSizeLookup(new SpanSizeLookupG());
+        rcv.setLayoutManager(layoutG);
+        return rcv;
+    }
+
+    class SpanSizeLookupG extends GridLayoutManager.SpanSizeLookup {
+        @Override
+        public int getSpanSize(int position) {
+            if (position == 0 || position == 1) {
+                return 2;
+            } else {
+                return 1;
+            }
         }
-        activity.setRequestedOrientation(frozenRotation);
     }
 }

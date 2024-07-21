@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.everest.basecamp.fragments;
+package com.everest.basecamp.categories;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -39,13 +39,13 @@ import java.util.Arrays;
 import java.util.List;
 
 @SearchIndexable
-public class GestureSettings extends SettingsPreferenceFragment 
+public class LockScreenSettings extends SettingsPreferenceFragment 
             implements Preference.OnPreferenceChangeListener {
 
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-        addPreferencesFromResource(R.xml.everest_gestures);
+        addPreferencesFromResource(R.xml.everest_lockscreen);
         PreferenceScreen prefSet = getPreferenceScreen();
         final Resources res = getResources();
         final PreferenceScreen prefScreen = getPreferenceScreen();
@@ -66,7 +66,7 @@ public class GestureSettings extends SettingsPreferenceFragment
                 public List<SearchIndexableResource> getXmlResourcesToIndex(
                         Context context, boolean enabled) {
                     final SearchIndexableResource sir = new SearchIndexableResource(context);
-                    sir.xmlResId = R.xml.everest_gestures;
+                    sir.xmlResId = R.xml.everest_lockscreen;
                     return Arrays.asList(sir);
                 }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 The EverestOS Project
+ * Copyright (C) 2023 The EverestOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.everest.basecamp.fragments;
+package com.everest.basecamp.categories;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -39,13 +39,13 @@ import java.util.Arrays;
 import java.util.List;
 
 @SearchIndexable
-public class SystemSettings extends SettingsPreferenceFragment 
+public class ButtonSettings extends SettingsPreferenceFragment 
             implements Preference.OnPreferenceChangeListener {
 
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-        addPreferencesFromResource(R.xml.everest_system);
+        addPreferencesFromResource(R.xml.everest_button);
         PreferenceScreen prefSet = getPreferenceScreen();
         final Resources res = getResources();
         final PreferenceScreen prefScreen = getPreferenceScreen();
@@ -66,7 +66,7 @@ public class SystemSettings extends SettingsPreferenceFragment
                 public List<SearchIndexableResource> getXmlResourcesToIndex(
                         Context context, boolean enabled) {
                     final SearchIndexableResource sir = new SearchIndexableResource(context);
-                    sir.xmlResId = R.xml.everest_system;
+                    sir.xmlResId = R.xml.everest_button;
                     return Arrays.asList(sir);
                 }
 
