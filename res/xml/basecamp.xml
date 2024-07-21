@@ -75,7 +75,7 @@
             android:key="misc_category"
             android:title="@string/misc_title" 
             android:fragment="com.everest.basecamp.categories.MiscSettings"
-            settings:layout="@layout/everest_cardview_single_left"
+            settings:layout="@layout/everest_card_single"
             android:summary="@string/misc_summary"
             android:icon="@drawable/ic_settings_miscs"/>
 
