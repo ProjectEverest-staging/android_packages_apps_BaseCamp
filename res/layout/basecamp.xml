@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nested_scroll_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?android:attr/colorPrimary"
@@ -17,136 +18,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/everest_preference_background_single"
-            android:orientation="horizontal"
-            android:padding="16dp">
-
-            <LinearLayout
-                android:id="@+id/themecard"
-                android:layout_width="0dp"
-                android:layout_height="100dp"
-                android:layout_marginEnd="8dp"
-                android:layout_weight="1"
-                android:background="@drawable/ev_card"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_settings_system"
-                    android:tint="?android:colorPrimary" />
-
-                <TextView
-                    style="@style/everestTextSecondaryMedium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Themes" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/fontscard"
-                android:layout_width="0dp"
-                android:layout_height="100dp"
-                android:layout_marginStart="8dp"
-                android:layout_weight="1"
-                android:background="@drawable/ev_card"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_settings_miscs"
-                    android:tint="?android:colorPrimary" />
-
-                <TextView
-                    style="@style/everestTextSecondaryMedium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Fonts" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="250dp"
-                android:layout_marginEnd="10dp"
-                android:layout_weight="1"
-                android:background="@drawable/everest_preference_background_single"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <LinearLayout
-                    android:id="@+id/qscard"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_marginBottom="8dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/ev_card"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/ic_settings_quicksettings"
-                        android:tint="?android:colorPrimary" />
-
-                    <TextView
-                        style="@style/everestTextSecondaryMedium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Quick Settings" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/statusbarcard"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/ev_card"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/ic_settings_statusbar"
-                        android:tint="?android:colorPrimary" />
-
-                    <TextView
-                        style="@style/everestTextSecondaryMedium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Statusbar" />
-
-                </LinearLayout>
-            </LinearLayout>
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/lscard"
                 android:layout_width="0dp"
-                android:layout_height="250dp"
-                android:layout_marginStart="5dp"
+                android:layout_height="300dp"
+                android:layout_marginEnd="10dp"
                 android:layout_weight="1"
                 app:cardCornerRadius="18dp"
                 app:cardElevation="0dp"
@@ -188,30 +66,186 @@
                         android:tint="#FFFFFFFF" />
                 </RelativeLayout>
             </com.google.android.material.card.MaterialCardView>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/themecard"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/stroke"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/everest_adaptive_shape"
+                        android:backgroundTint="?android:colorAccent"
+                        android:padding="8dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_settings_theme"
+                        android:tint="?android:colorPrimary" />
+
+                    <TextView
+                        style="@style/everestTextSecondaryMedium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Themes" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/fontscard"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/stroke"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/everest_adaptive_shape"
+                        android:backgroundTint="?android:colorAccent"
+                        android:padding="8dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_settings_fonts"
+                        android:tint="?android:colorPrimary" />
+
+                    <TextView
+                        style="@style/everestTextSecondaryMedium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Fonts" />
+
+                </LinearLayout>
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:background="@drawable/everest_preference_background_single"
-            android:orientation="horizontal"
-            android:padding="16dp">
+            android:orientation="horizontal">
 
             <LinearLayout
-                android:id="@+id/buttonscard"
+                android:id="@+id/statusbarcard"
                 android:layout_width="0dp"
-                android:layout_height="90dp"
+                android:layout_height="100dp"
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
-                android:background="@drawable/ev_card"
+                android:background="@drawable/everest_preference_background_single"
                 android:gravity="center"
                 android:orientation="vertical">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="10dp"
+                    android:background="@drawable/everest_adaptive_shape"
+                    android:backgroundTint="?android:colorAccent"
+                    android:padding="8dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_settings_statusbar"
+                    android:tint="?android:colorPrimary" />
+
+                <TextView
+                    style="@style/everestTextSecondaryMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Status Bar" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/qscard"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/everest_preference_background_single"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/everest_adaptive_shape"
+                    android:backgroundTint="?android:colorAccent"
+                    android:padding="8dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_settings_quicksettings"
+                    android:tint="?android:colorPrimary" />
+
+                <TextView
+                    style="@style/everestTextSecondaryMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Quick Settings" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/notificationcard"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/everest_preference_background_single"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/everest_adaptive_shape"
+                    android:backgroundTint="?android:colorAccent"
+                    android:padding="8dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_settings_notifications"
+                    android:tint="?android:colorPrimary" />
+
+                <TextView
+                    style="@style/everestTextSecondaryMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Notifications" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/buttonscard"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/everest_preference_background_single"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/everest_adaptive_shape"
+                    android:backgroundTint="?android:colorAccent"
+                    android:padding="8dp"
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_settings_buttons"
                     android:tint="?android:colorPrimary" />
@@ -224,21 +258,30 @@
 
             </LinearLayout>
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
             <LinearLayout
                 android:id="@+id/gesturecard"
                 android:layout_width="0dp"
                 android:layout_height="90dp"
-                android:layout_marginStart="4dp"
-                android:layout_marginEnd="4dp"
+                android:layout_marginEnd="8dp"
                 android:layout_weight="1"
-                android:background="@drawable/ev_card"
+                android:background="@drawable/everest_preference_background_single"
                 android:gravity="center"
                 android:orientation="vertical">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="8dp"
+                    android:background="@drawable/everest_adaptive_shape"
+                    android:backgroundTint="?android:colorAccent"
+                    android:padding="10dp"
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_settings_sos_gestures"
                     android:tint="?android:colorPrimary" />
@@ -247,59 +290,26 @@
                     style="@style/everestTextSecondaryMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Gesture" />
+                    android:text="Gestures" />
 
             </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/notificationcard"
-                android:layout_width="0dp"
-                android:layout_height="90dp"
-                android:layout_marginStart="8dp"
-                android:layout_weight="1"
-                android:background="@drawable/ev_card"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="8dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_settings_notifications"
-                    android:tint="?android:colorPrimary" />
-
-                <TextView
-                    style="@style/everestTextSecondaryMedium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Notification" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/everest_preference_background_single"
-            android:orientation="horizontal"
-            android:padding="16dp">
 
             <LinearLayout
                 android:id="@+id/systemcard"
                 android:layout_width="0dp"
-                android:layout_height="100dp"
-                android:layout_marginEnd="8dp"
+                android:layout_height="90dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
                 android:layout_weight="1"
-                android:background="@drawable/ev_card"
+                android:background="@drawable/everest_preference_background_single"
                 android:gravity="center"
                 android:orientation="vertical">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/everest_adaptive_shape"
+                    android:backgroundTint="?android:colorAccent"
                     android:padding="8dp"
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_settings_system"
@@ -316,16 +326,18 @@
             <LinearLayout
                 android:id="@+id/miscscard"
                 android:layout_width="0dp"
-                android:layout_height="100dp"
+                android:layout_height="90dp"
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
-                android:background="@drawable/ev_card"
+                android:background="@drawable/everest_preference_background_single"
                 android:gravity="center"
                 android:orientation="vertical">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/everest_adaptive_shape"
+                    android:backgroundTint="?android:colorAccent"
                     android:padding="8dp"
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_settings_miscs"
@@ -340,6 +352,7 @@
             </LinearLayout>
 
         </LinearLayout>
+
 
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>
