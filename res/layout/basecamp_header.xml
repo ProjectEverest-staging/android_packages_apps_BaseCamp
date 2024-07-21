@@ -3,8 +3,9 @@
     android:gravity="center_vertical"
     android:layout_width="fill_parent"
     android:background="@android:color/transparent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:baselineAligned="false"
+    app:rippleColor="@android:color/transparent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <LinearLayout
@@ -21,7 +22,10 @@
             android:layout_weight="1.0"
             android:layout_marginEnd="8.0dip"
             app:cardCornerRadius="24.0dip"
-            app:cardElevation="0.0dip" >
+            app:cardElevation="0.0dip"
+            app:strokeColor="?android:attr/textColorPrimary"
+            app:strokeWidth="2dp"
+            app:rippleColor="?android:colorControlHighlight">
 
             <com.everest.basecamp.utils.WallpaperCardView
                 android:layout_width="match_parent"
@@ -31,19 +35,34 @@
                 android:orientation="vertical"
                 android:scaleType="centerCrop" />
 
-            <TextClock
-                android:id="@+id/lockscreen_clock"
-                style="@style/op_control_text_style_h6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="false"
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:fontFamily="@*android:string/config_headlineFontFamily"
-                android:format12Hour="hh\nmm"
-                android:format24Hour="hh\nmm"
-                android:textColor="@*android:color/system_accent1_100"
-                android:textFontWeight="300"
-                android:textSize="60sp" />
+            <RelativeLayout
+                android:id="@+id/themes_clock_frame"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <TextClock
+                    android:id="@+id/lockscreen_clock_preview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="@*android:string/config_clockFontFamily"
+                    android:format12Hour="hh\nmm"
+                    android:format24Hour="hh\nmm"
+                    android:textColor="@*android:color/system_accent1_100"
+                    android:textFontWeight="300"
+                    android:textSize="60sp" />
+
+                <ImageView
+                    android:id="@+id/lock_icon"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_below="@+id/lockscreen_clock_preview"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="24dp"
+                    android:src="@drawable/ic_lock"
+                    android:tint="#FFFFFFFF" />
+            </RelativeLayout>
 
         </com.google.android.material.card.MaterialCardView>
         <LinearLayout
